@@ -595,6 +595,143 @@
         width: 95%;
       }
     }
+
+    /* Pricing section styling */
+    .pricing-container {
+      background: rgba(255,255,255,0.7);
+      padding: 30px;
+      border-radius: 10px;
+      box-shadow: 5px 5px 0 var(--faded-denim);
+      border-left: 5px solid var(--burnt-orange);
+      margin: 20px 0 40px;
+    }
+
+    .pricing-info {
+      text-align: center;
+    }
+
+    .price-range {
+      font-family: 'Alfa Slab One', cursive;
+      font-size: 3rem;
+      color: var(--deep-purple);
+      margin: 20px 0;
+      font-weight: 400;
+      position: relative;
+      display: inline-block;
+    }
+
+    .dollar {
+      position: relative;
+      font-size: 2rem;
+      top: -15px;
+      color: var(--burnt-orange);
+    }
+
+    .pricing-detail {
+      font-style: italic;
+      margin-bottom: 25px;
+      color: var(--faded-denim);
+    }
+
+    .pricing-features {
+      list-style: none;
+      text-align: left;
+      max-width: 600px;
+      margin: 0 auto 25px;
+    }
+
+    .pricing-features li {
+      margin-bottom: 15px;
+      padding-left: 30px;
+      position: relative;
+    }
+
+    .pricing-features li::before {
+      content: "✓";
+      color: var(--earthy-green);
+      position: absolute;
+      left: 0;
+      font-weight: bold;
+    }
+
+    .privacy-badge {
+      background: rgba(89, 125, 53, 0.1);
+      padding: 15px;
+      border-radius: 8px;
+      display: inline-block;
+      margin: 10px auto;
+    }
+
+    .privacy-icon {
+      font-size: 1.5rem;
+      margin-right: 10px;
+      vertical-align: middle;
+    }
+
+    .privacy-badge p {
+      display: inline;
+      font-weight: 500;
+      color: var(--deep-purple);
+    }
+
+    /* Navigation */
+    .page-nav {
+      display: flex;
+      justify-content: center;
+      padding: 20px 0;
+    }
+
+    .nav-link {
+      color: var(--deep-purple);
+      text-decoration: none;
+      padding: 8px 15px;
+      margin: 0 10px;
+      position: relative;
+      font-weight: 400;
+      transition: all 0.3s ease;
+    }
+
+    .nav-link::after {
+      content: "";
+      position: absolute;
+      bottom: 0;
+      left: 0;
+      width: 100%;
+      height: 2px;
+      background: var(--burnt-orange);
+      transform: scaleX(0);
+      transition: transform 0.3s ease;
+    }
+
+    .nav-link:hover::after {
+      transform: scaleX(1);
+    }
+
+    /* General link styling - add this after the body style */
+    a {
+      color: var(--earthy-green);
+      text-decoration: none;
+      transition: color 0.3s ease;
+    }
+
+    a:hover {
+      color: var(--burnt-orange);
+    }
+
+    /* Make sure the About Us section link matches */
+    .about-section a {
+      display: inline-block;
+      color: var(--burnt-orange);
+      border-bottom: 2px dashed var(--burnt-orange);
+      padding-bottom: 2px;
+      font-weight: 500;
+      transition: all 0.3s ease;
+    }
+
+    .about-section a:hover {
+      color: var(--turquoise);
+      border-bottom: 2px dashed var(--turquoise);
+    }
   </style>
   <link href="https://fonts.googleapis.com/css2?family=Alfa+Slab+One&family=Poppins:wght@300;400;600&display=swap" rel="stylesheet">
 </head>
@@ -617,6 +754,12 @@
   </header>
   
   <div class="wave-divider"></div>
+
+  <nav class="page-nav">
+    <a class="nav-link" href="index.html">Home</a>
+    <a class="nav-link" href="why-get-a-roof-report.html">Why Get a Report</a>
+    <a class="nav-link" href="report.html">Sample Report</a>
+  </nav>
 
   <div class="main-content">
     <div class="austin-image-container">
@@ -681,6 +824,32 @@
       <div class="about-section">
         <p>We're not roofers. We're drone operators who care about keeping Austin homes safe and dry. If something's wrong, we'll show you a video report and refer you to a trusted local roofing pro.</p>
         <a href="report.html">See a Sample Report</a>
+      </div>
+    </div>
+
+    <div class="wave-divider"></div>
+
+    <div class="section" id="pricing">
+      <h2>How Much Does It Cost?</h2>
+      <div class="pricing-container">
+        <div class="pricing-info">
+          <div class="price-range">
+            <span class="dollar">$</span>150-350
+          </div>
+          <p class="pricing-detail">Price varies based on roof size and complexity</p>
+          
+          <ul class="pricing-features">
+            <li><strong>Quick Turnaround:</strong> Most jobs completed within 48 hours</li>
+            <li><strong>Comprehensive Report:</strong> Detailed PDF with high-resolution images</li>
+            <li><strong>Clear Recommendations:</strong> Honest assessment of any issues found</li>
+            <li><strong>Your Privacy Protected:</strong> We never share your information with roofers unless you specifically request a recommendation</li>
+          </ul>
+          
+          <div class="privacy-badge">
+            <span class="privacy-icon">🔒</span>
+            <p>No annoying sales calls or follow-ups. Ever.</p>
+          </div>
+        </div>
       </div>
     </div>
 
