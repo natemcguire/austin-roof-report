@@ -1,0 +1,717 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <title>Austin Roof Report</title>
+  <style>
+    /* Retro Hippie Austin-inspired color palette */
+    :root {
+      --burnt-orange: #bf5700; /* Austin's classic burnt orange */
+      --earthy-green: #597d35;
+      --sunshine-yellow: #f0c808;
+      --turquoise: #2ec4b6;
+      --deep-purple: #5f0f40;
+      --warm-tan: #f2e9d8;
+      --terracotta: #c06d3f;
+      --faded-denim: #7d98a1;
+      --text-color: #333333;
+    }
+    
+    @font-face {
+      font-family: 'Groovy';
+      src: url('https://fonts.gstatic.com/s/rookieburlesque/v1/MwQ2bjR3N2Qmz-E8-Jx7CiLtrAuFSS1K1Ok.woff2') format('woff2');
+      font-display: swap;
+    }
+    
+    * {
+      box-sizing: border-box;
+      margin: 0;
+      padding: 0;
+    }
+    
+    body {
+      font-family: 'Poppins', sans-serif;
+      background: var(--warm-tan);
+      color: var(--text-color);
+      line-height: 1.7;
+      overflow-x: hidden;
+      position: relative;
+      font-weight: 300;
+    }
+    
+    /* Retro paper texture overlay */
+    body::before {
+      content: "";
+      position: fixed;
+      top: 0;
+      left: 0;
+      width: 100%;
+      height: 100%;
+      background-image: url("data:image/png;base64,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");
+      opacity: 0.07;
+      z-index: -1;
+    }
+
+    /* Rainbow wave divider */
+    .wave-divider {
+      height: 30px;
+      background: linear-gradient(90deg, 
+        var(--burnt-orange) 0%, 
+        var(--earthy-green) 25%, 
+        var(--turquoise) 50%, 
+        var(--sunshine-yellow) 75%, 
+        var(--deep-purple) 100%);
+      clip-path: url(#wave-path);
+      margin: 0;
+      padding: 0;
+      display: block;
+    }
+
+    /* Header section with psychedelic styling */
+    header {
+      background: var(--burnt-orange);
+      padding: 40px 20px;
+      text-align: center;
+      position: relative;
+      overflow: hidden;
+    }
+    
+    /* Psychedelic background pattern */
+    header::before {
+      content: "";
+      position: absolute;
+      top: 0;
+      left: 0;
+      width: 100%;
+      height: 100%;
+      background-image: radial-gradient(circle at 50% 50%, 
+        rgba(240, 200, 8, 0.3) 10%, 
+        transparent 10%, 
+        transparent 20%, 
+        rgba(95, 15, 64, 0.2) 20%, 
+        rgba(95, 15, 64, 0.2) 30%);
+      background-size: 100px 100px;
+      opacity: 0.3;
+      z-index: 0;
+    }
+    
+    /* Austin flair with star pattern for header */
+    header::after {
+      content: "★";
+      position: absolute;
+      top: 20px;
+      right: 20px;
+      font-size: 30px;
+      color: var(--sunshine-yellow);
+      text-shadow: 2px 2px 0px var(--deep-purple);
+    }
+
+    .header-content {
+      position: relative;
+      z-index: 2;
+    }
+
+    /* Groovy main title */
+    .site-title {
+      font-family: 'Alfa Slab One', cursive;
+      color: var(--warm-tan);
+      font-size: clamp(2.8rem, 7vw, 4.5rem);
+      line-height: 1;
+      margin-bottom: 15px;
+      text-transform: uppercase;
+      text-shadow: 2px 2px 0 var(--deep-purple);
+      letter-spacing: 1px;
+      font-weight: 400;
+    }
+
+    /* Retro style tagline */
+    .tagline {
+      font-family: 'Poppins', sans-serif;
+      font-size: clamp(0.95rem, 2.3vw, 1.2rem);
+      color: var(--warm-tan);
+      font-weight: 300;
+      margin-bottom: 20px;
+      position: relative;
+      display: inline-block;
+      padding: 0 15px;
+      letter-spacing: 0.5px;
+    }
+    
+    .tagline::before, .tagline::after {
+      content: "✻";
+      color: var(--sunshine-yellow);
+      position: absolute;
+      top: 50%;
+      transform: translateY(-50%);
+    }
+    
+    .tagline::before {
+      left: -15px;
+    }
+    
+    .tagline::after {
+      right: -15px;
+    }
+
+    /* 70s style price badge */
+    .price-badge {
+      background: var(--sunshine-yellow);
+      color: var(--deep-purple);
+      font-family: 'Poppins', sans-serif;
+      display: inline-block;
+      padding: 8px 18px;
+      border-radius: 50px;
+      font-size: 1rem;
+      transform: rotate(-2deg);
+      margin-top: 20px;
+      box-shadow: 2px 2px 0 var(--deep-purple);
+      position: relative;
+      z-index: 2;
+      font-weight: 500;
+    }
+
+    .price-badge::before {
+      content: "★";
+      color: var(--deep-purple);
+      margin-right: 10px;
+    }
+    
+    .price-badge::after {
+      content: "★";
+      color: var(--deep-purple);
+      margin-left: 10px;
+    }
+
+    /* Main content styling */
+    .main-content {
+      max-width: 1200px;
+      margin: 0 auto;
+      padding: 0 20px;
+    }
+
+    /* Video container with vintage TV style */
+    .video-container {
+      position: relative;
+      width: 80%;
+      max-width: 800px;
+      margin: 50px auto;
+      padding-bottom: 45%; /* 16:9 aspect ratio */
+      background: var(--deep-purple);
+      border-radius: 10px;
+      overflow: hidden;
+      box-shadow: 0 10px 20px rgba(0,0,0,0.2);
+    }
+    
+    .video-container::before {
+      content: "";
+      position: absolute;
+      top: 0;
+      left: 0;
+      width: 100%;
+      height: 100%;
+      background: radial-gradient(
+        ellipse at center,
+        transparent 60%,
+        rgba(0, 0, 0, 0.3) 100%
+      );
+      z-index: 2;
+      pointer-events: none;
+    }
+
+    .video-container iframe {
+      position: absolute;
+      top: 0;
+      left: 0;
+      width: 100%;
+      height: 100%;
+      border: 15px solid var(--deep-purple);
+      border-radius: 10px;
+      box-sizing: border-box;
+    }
+
+    /* Section styling */
+    .section {
+      padding: 50px 20px;
+      position: relative;
+    }
+    
+    .section:nth-of-type(even) {
+      background-color: rgba(125, 152, 161, 0.1);
+    }
+
+    .section h2 {
+      font-family: 'Alfa Slab One', cursive;
+      color: var(--terracotta);
+      text-align: center;
+      font-size: clamp(1.6rem, 3.5vw, 2.2rem);
+      margin-bottom: 40px;
+      position: relative;
+      display: inline-block;
+      left: 50%;
+      transform: translateX(-50%);
+      text-transform: uppercase;
+      font-weight: 400;
+      letter-spacing: 1px;
+    }
+    
+    .section h2::after {
+      content: "";
+      display: block;
+      width: 70%;
+      height: 4px;
+      background: var(--sunshine-yellow);
+      position: absolute;
+      bottom: -10px;
+      left: 15%;
+    }
+
+    /* Hippie style list items */
+    .icon-list {
+      list-style-type: none;
+      padding: 0;
+      display: grid;
+      grid-template-columns: repeat(auto-fill, minmax(250px, 1fr));
+      gap: 20px;
+      max-width: 900px;
+      margin: 0 auto;
+    }
+
+    .icon-list li {
+      background: var(--warm-tan);
+      padding: 20px;
+      border-radius: 10px;
+      box-shadow: 2px 2px 0 var(--faded-denim);
+      position: relative;
+      transition: all 0.3s ease;
+      border-left: 4px solid var(--earthy-green);
+      font-weight: 300;
+      font-size: 0.95rem;
+      line-height: 1.6;
+    }
+    
+    .icon-list li:hover {
+      transform: translateY(-5px);
+      box-shadow: 5px 8px 0 var(--faded-denim);
+    }
+
+    .icon-list li::before {
+      content: "☮";
+      color: var(--earthy-green);
+      margin-right: 10px;
+      font-size: 1.2em;
+    }
+
+    /* About us section */
+    .about-section {
+      text-align: center;
+      max-width: 800px;
+      margin: 0 auto;
+    }
+    
+    .about-section p {
+      font-size: 1rem;
+      margin-bottom: 20px;
+      color: var(--text-color);
+      font-weight: 300;
+      line-height: 1.7;
+      letter-spacing: 0.3px;
+    }
+    
+    .about-section a {
+      display: inline-block;
+      margin-top: 20px;
+      color: var(--burnt-orange);
+      text-decoration: none;
+      font-weight: 600;
+      font-size: 1.1rem;
+      padding: 10px 20px;
+      border: 2px solid var(--burnt-orange);
+      border-radius: 50px;
+      transition: all 0.3s ease;
+    }
+    
+    .about-section a:hover {
+      background: var(--burnt-orange);
+      color: var(--warm-tan);
+      transform: scale(1.05);
+    }
+    
+    .about-section a::after {
+      content: " →";
+    }
+
+    /* Vintage form styling */
+    .form-container {
+      max-width: 600px;
+      margin: 0 auto;
+      background: var(--warm-tan);
+      padding: 30px;
+      border-radius: 10px;
+      box-shadow: 5px 5px 0 var(--earthy-green);
+      position: relative;
+      border: 2px solid var(--earthy-green);
+    }
+    
+    /* Decorative elements for the form */
+    .form-container::before {
+      content: "★";
+      position: absolute;
+      top: -15px;
+      left: -15px;
+      background: var(--sunshine-yellow);
+      width: 40px;
+      height: 40px;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      border-radius: 50%;
+      color: var(--deep-purple);
+      font-size: 20px;
+      box-shadow: 2px 2px 0 var(--deep-purple);
+    }
+
+    form label {
+      display: block;
+      margin-bottom: 5px;
+      font-weight: 500;
+      color: var(--deep-purple);
+      font-size: 0.95rem;
+    }
+
+    form input, form select, form textarea {
+      width: 100%;
+      padding: 12px;
+      margin-bottom: 20px;
+      border: 2px solid var(--faded-denim);
+      border-radius: 5px;
+      background: rgba(255, 255, 255, 0.9);
+      font-family: 'Poppins', sans-serif;
+      font-size: 1rem;
+      transition: all 0.3s ease;
+    }
+    
+    form input:focus, form select:focus, form textarea:focus {
+      outline: none;
+      border-color: var(--turquoise);
+      box-shadow: 0 0 0 3px rgba(46, 196, 182, 0.3);
+    }
+
+    /* Submit button with retro styling */
+    form button {
+      background: var(--earthy-green);
+      color: var(--warm-tan);
+      border: none;
+      padding: 15px 30px;
+      font-size: 1rem;
+      font-family: 'Poppins', sans-serif;
+      font-weight: 500;
+      border-radius: 50px;
+      cursor: pointer;
+      transition: all 0.3s ease;
+      display: block;
+      width: 100%;
+      margin-top: 20px;
+      box-shadow: 2px 2px 0 var(--deep-purple);
+      text-transform: uppercase;
+      letter-spacing: 1px;
+    }
+    
+    form button:hover {
+      background: var(--turquoise);
+      transform: translateY(-3px);
+      box-shadow: 5px 5px 0 var(--deep-purple);
+    }
+
+    /* Groovy Footer */
+    footer {
+      background: var(--deep-purple);
+      color: var(--warm-tan);
+      padding: 40px 20px;
+      text-align: center;
+      position: relative;
+    }
+    
+    /* Decorative border for footer */
+    footer::before {
+      content: "";
+      position: absolute;
+      top: 0;
+      left: 0;
+      width: 100%;
+      height: 10px;
+      background: repeating-linear-gradient(
+        90deg,
+        var(--burnt-orange),
+        var(--burnt-orange) 20px,
+        var(--sunshine-yellow) 20px,
+        var(--sunshine-yellow) 40px,
+        var(--turquoise) 40px,
+        var(--turquoise) 60px,
+        var(--earthy-green) 60px,
+        var(--earthy-green) 80px
+      );
+    }
+
+    footer p {
+      margin: 5px 0;
+      font-size: 0.9rem;
+    }
+    
+    /* Peace sign separator */
+    footer p:not(:last-child)::after {
+      content: " ☮ ";
+      display: inline-block;
+      margin: 0 10px;
+      color: var(--sunshine-yellow);
+    }
+
+    /* Media queries for responsiveness */
+    @media (max-width: 768px) {
+      .video-container {
+        width: 95%;
+        padding-bottom: 53%; /* Adjust aspect ratio */
+      }
+      
+      .icon-list {
+        grid-template-columns: 1fr;
+      }
+      
+      .form-container {
+        padding: 20px;
+      }
+    }
+
+    @media (max-width: 480px) {
+      .site-title {
+        font-size: 2.5rem;
+      }
+      
+      .video-container {
+        padding-bottom: 65%;
+      }
+      
+      .price-badge {
+        font-size: 0.9rem;
+      }
+    }
+
+    /* Weather section styling */
+    .weather-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+      gap: 25px;
+      margin: 30px 0;
+    }
+
+    .weather-item {
+      background: rgba(255,255,255,0.5);
+      padding: 20px;
+      border-radius: 8px;
+      border-left: 4px solid var(--turquoise);
+    }
+
+    .weather-item h3 {
+      font-family: 'Alfa Slab One', cursive;
+      color: var(--burnt-orange);
+      font-size: 1.3rem;
+      margin-bottom: 15px;
+      font-weight: 400;
+    }
+
+    .highlight-text {
+      background: rgba(191, 87, 0, 0.1);
+      padding: 15px;
+      border-radius: 8px;
+      border-left: 4px solid var(--burnt-orange);
+      font-weight: 400;
+      margin-top: 20px;
+    }
+
+    /* Replace the video container with this image container */
+    .austin-image-container {
+      position: relative;
+      width: 90%;
+      max-width: 800px;
+      margin: 50px auto;
+      border-radius: 10px;
+      overflow: hidden;
+      box-shadow: 0 10px 20px rgba(0,0,0,0.2);
+    }
+    
+    .austin-image {
+      width: 100%;
+      display: block;
+      border: 12px solid var(--deep-purple);
+      border-radius: 10px;
+      box-sizing: border-box;
+    }
+
+    /* Retro image frame effect */
+    .image-frame::before, .image-frame::after {
+      content: "";
+      position: absolute;
+      background: repeating-linear-gradient(
+        45deg,
+        var(--burnt-orange),
+        var(--burnt-orange) 10px,
+        var(--sunshine-yellow) 10px,
+        var(--sunshine-yellow) 20px
+      );
+      z-index: -1;
+    }
+
+    .image-frame::before {
+      top: -8px;
+      left: -8px;
+      right: 8px;
+      bottom: 8px;
+      border-radius: 12px;
+    }
+
+    .image-frame::after {
+      top: 8px;
+      left: 8px;
+      right: -8px;
+      bottom: -8px;
+      border-radius: 12px;
+    }
+
+    @media (max-width: 768px) {
+      .austin-image-container {
+        width: 95%;
+      }
+    }
+  </style>
+  <link href="https://fonts.googleapis.com/css2?family=Alfa+Slab+One&family=Poppins:wght@300;400;600&display=swap" rel="stylesheet">
+</head>
+<body>
+  <!-- SVG for wave pattern -->
+  <svg style="position: absolute; width: 0; height: 0;" width="0" height="0" xmlns="http://www.w3.org/2000/svg">
+    <defs>
+      <clipPath id="wave-path" clipPathUnits="objectBoundingBox">
+        <path d="M0,0.5 C0.2,0.3 0.3,0.7 0.5,0.5 C0.7,0.3 0.8,0.7 1,0.5 L1,1 L0,1 Z"></path>
+      </clipPath>
+    </defs>
+  </svg>
+
+  <header>
+    <div class="header-content">
+      <h1 class="site-title">Austin Roof Report</h1>
+      <p class="tagline">Get a Drone Roof Report After the Storm – No Roofers, No Pressure.</p>
+      <div class="price-badge">Starting at $150 per visit</div>
+    </div>
+  </header>
+  
+  <div class="wave-divider"></div>
+
+  <div class="main-content">
+    <div class="austin-image-container">
+      <img src="images/austin-roof-report.png" alt="Keep Austin Weird mural with Armadillo Alley sign" class="austin-image">
+      <div class="image-frame"></div>
+    </div>
+
+    <div class="section">
+      <h2>Why Get a Roof Report?</h2>
+      <ul class="icon-list">
+        <li>Hail & Storm Damage</li>
+        <li>Animal Nesting or Scratches</li>
+        <li>Tree Branch Punctures</li>
+        <li>Missing or Torn Shingles</li>
+        <li>Rusted or Missing Flashing</li>
+        <li>Pooling Water or Blocked Gutters</li>
+      </ul>
+    </div>
+
+    <div class="section">
+      <h2>Austin's Weather Challenges</h2>
+      <div class="content-section">
+        <p>Austin's unique climate presents specific challenges for homeowners. From intense hailstorms in spring to falling branches from our beloved oak trees, Central Texas roofs take a beating like nowhere else.</p>
+        
+        <div class="weather-grid">
+          <div class="weather-item">
+            <h3>Hail Alley Impact</h3>
+            <p>Austin sits at the southern edge of "Hail Alley" — making us prone to severe spring storms with damaging hail. These storms can create subtle damage that worsens over time if not detected early.</p>
+          </div>
+          
+          <div class="weather-item">
+            <h3>Heritage Tree Hazards</h3>
+            <p>Our cherished live oaks and pecan trees provide shade but can damage roofs during storms. Falling branches can puncture shingles, creating entry points for water that lead to costly repairs if not addressed quickly.</p>
+          </div>
+        </div>
+        
+        <p class="highlight-text">After every major storm, we see a 300% increase in calls from homeowners who've been approached by roofing companies claiming "total roof replacement" is needed when often just spot repairs will do.</p>
+      </div>
+    </div>
+
+    <div class="wave-divider"></div>
+
+    <div class="section">
+      <h2>What We Look For</h2>
+      <ul class="icon-list">
+        <li>Storm Damage</li>
+        <li>Hail Damage</li>
+        <li>Animal or Tree Damage</li>
+        <li>Wind Damage</li>
+        <li>Raised / Rusted Flashings</li>
+        <li>Missing Vent Caps</li>
+        <li>Cracked Skylights</li>
+        <li>Buckled Decking</li>
+        <li>Clogged Gutters</li>
+      </ul>
+    </div>
+
+    <div class="wave-divider"></div>
+
+    <div class="section">
+      <h2>About Us</h2>
+      <div class="about-section">
+        <p>We're not roofers. We're drone operators who care about keeping Austin homes safe and dry. If something's wrong, we'll show you a video report and refer you to a trusted local roofing pro.</p>
+        <a href="report.html">See a Sample Report</a>
+      </div>
+    </div>
+
+    <div class="wave-divider"></div>
+
+    <div class="section" id="form">
+      <h2>Request a Roof Report</h2>
+      <div class="form-container">
+        <form action="https://formspree.io/f/xnnpbnpz" method="POST">
+          <label for="name">Name</label>
+          <input id="name" name="name" required>
+
+          <label for="email">Email</label>
+          <input id="email" type="email" name="email" required>
+
+          <label for="phone">Phone</label>
+          <input id="phone" name="phone">
+
+          <label for="address">Property Address</label>
+          <input id="address" name="address" required>
+
+          <label for="roofType">Roof Type</label>
+          <select id="roofType" name="roofType">
+            <option>Shingle</option>
+            <option>Metal</option>
+            <option>Tile</option>
+            <option>Flat</option>
+            <option>Not Sure</option>
+          </select>
+
+          <label for="notes">Additional Notes</label>
+          <textarea id="notes" name="notes" rows="4"></textarea>
+
+          <button type="submit">Book My Roof Report</button>
+        </form>
+      </div>
+    </div>
+  </div>
+
+  <footer>
+    <p>FAA Part 107 Certified Drone Operators</p>
+    <p>Locally Owned & Flown – Austin, TX</p>
+    <p>&copy; 2025 AustinRoofReport.com</p>
+  </footer>
+
+</body>
+</html>
